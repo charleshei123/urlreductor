@@ -1,0 +1,22 @@
+body{
+    background-color: white;
+}
+
+td, th{
+    text-align: center;
+}
+
+#headerindex{
+    background-color: black;
+    color: white;
+    border: solid 2px black;
+}
+
+#formulaire{
+    margin-top: 5%;
+}
+
+#textepanel{
+    margin-left: 2%;
+    margin-right: 2%;
+}
