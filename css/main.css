@@ -20,3 +20,8 @@ td, th{
     margin-left: 2%;
     margin-right: 2%;
 }
+
+button{
+    align-content: center;
+    margin-left: 45%;
+}
