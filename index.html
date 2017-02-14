@@ -14,16 +14,16 @@
   </head>
 
   <body>
-    <header>
+<header>
       <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand" href="index.html">Reducteur URL</a>
           </div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">All Urls</a></li>
-            <li><a href="#">Contact</a></li>
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="tableau.html">All Urls</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -31,7 +31,7 @@
         </ul>
         </div>
       </nav>
-    </header>
+</header>
       
     <section class="container content-page">
         <div class="row">
@@ -45,11 +45,11 @@
                     <div class="panel-body">
                         <div class="row" id="textepanel">
                             
-                            <div class="col-sm-4">Un lien trop long ?<br/>Vous voulez le<br/>réduire pour qu'il soit<br/>plus facile à diffuser ?
+                            <div class="col-sm-4">Un lien trop long ?<br/>Vous voulez le réduire pour qu'il soit plus facile à diffuser ?
                             </div>
-                            <div class="col-sm-4">Un lien trop long ?<br/>Vous voulez le<br/>réduire pour qu'il soit<br/>plus facile à diffuser ?
+                            <div class="col-sm-4">
                             </div>
-                            <div class="col-sm-4">Un lien trop long ?<br/>Vous voulez le<br/>réduire pour qu'il soit<br/>plus facile à diffuser ?
+                            <div class="col-sm-4">Entrez votre url ici et laissez la magie opérer ! vous allez etre surpris par le résultat
                             </div>
                            
                         </div>
@@ -60,15 +60,45 @@
                                     <label for="url">URL à modifier :</label>
                                     <input type="url" class="form-control" id="url">
                                 </div>
-                                <button type="submit" class="btn btn-primary centered">Modifier</button>                     
+                                <button type="submit" class="btn btn-primary centered"  onclick="javascript:afficher_cacher('cacher');">Modifier</button>
                                </form>
                             </div>
-                        </div>                      
+                        </div>
+                        <div class="row" id="cacher" style="hidden">
+                            <div class="col-sm-12">
+                                <div class="form-group" id="formulaire">
+                                    <label for="url">Votre nouvel url tout beau !</label>
+                                    <input type="url" class="form-control" id="url">
+                                </div>
+                                <button type="submit" class="btn btn-primary centered">Copier</button>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <footer class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3"><b>Auteurs :</b>
+                <br/><br/>
+                <p><span class="glyphicon glyphicon-user"></span> Charles de Franssu</p>
+                <p><span class="glyphicon glyphicon-user"></span> Thomas Roqueplot</p>
+            </div>
+            <div class="col-sm-6 text-center">
+                <p>mentions legales !</p>
+            </div>
+            <div class="col-sm-3">
+                <a href="https://github.com/charleshei123/urlreductor"><span class="glyphicon glyphicon-globe"></span><b> Github Repository</b></a>
+                <br/>
+                <br/>
+                <a href="contact.html"><span class="glyphicon glyphicon-comment"></span><b> Contact</b></a>
+                <span class="glyphicon glyphicon-group"></span>
+                <span class="glyphicon glyphicon-git"></span>
+            </div>
+        </div>
+    </footer>
 
   </body>
 </html>

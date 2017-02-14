@@ -2,6 +2,18 @@ body{
     background-color: white;
 }
 
+footer {
+    padding-top: 2%;
+    background-color: gainsboro;
+    position: absolute;
+        bottom: 0;
+        width: 100%;}
+
+footer a {
+    color: black;
+    font-size: 16px;
+}
+
 td, th{
     text-align: center;
 }
@@ -19,6 +31,7 @@ td, th{
 #textepanel{
     margin-left: 2%;
     margin-right: 2%;
+    text-align: center;
 }
 
 button{
