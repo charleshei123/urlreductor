@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>ITI - Reducteur URL</title>
+        <link rel="icon" href="img/favicon.ico" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="js/fonctions.js"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css"> 
+        <link rel="stylesheet" type="text/css" href="css/tableau.css">
+    </head>
+    <body>
+        <!-- header à séparer ensuite avec java -->
+<header>
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Reducteur URL</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tableau.html">All Urls</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+        </div>
+      </nav>
+</header>
+        <!-- fin du header -->
+    <section class="container content-page">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <form class="form-signin" method="post" action="accueil.php">
+                    <h2 class="form-signin-heading">Veuillez vous Connecter</h2>                    
+                    
+                    <label for="inputEmail" class="sr-only">Adresse Email</label>
+                       <input type="email" name="inputEmail" class="form-control" placeholder="Adresse Email" required autofocus>
+                    <br/>
+                    <label for="inputMdp" class="sr-only">Mdp</label>
+                        <input type="password" name="inputMdp" class="form-control" placeholder="Mot de passe" required>
+                    <br/>
+                    
+                    
+                    <a href="admin/tableau.html">
+                    <button class="btn-lg btn-primary" type="submit">Valider</button>
+                    </a>
+                
+                
+                </form>
+            </div>
+        </div>
+    </section>
+  </body>
+</html>

@@ -34,47 +34,24 @@
       
     <section class="container content-page">
         <div class="row">
-            <div class="col-sm-2"> </div>
-            
+            <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <div class="panel panel-info">
                     <div class="panel-heading">        
-                        <p class="h2 text-center">URL REDUCTEUR !</p>
+                        <p class="h2 text-center">Contacter les Auteurs</p>
                     </div>
                     <div class="panel-body">
-                        <div class="row" id="textepanel">
+                        <form class="form-signin" method="post" action="accueil.php">                  
+                            <input type="email" name="inputEmail" class="form-control" placeholder="Votre Adresse Email" required autofocus>
+                            <br/>
+                            <textarea class="form-control" name="comment" placeholder="Votre Message..."></textarea>
+                            <br/>
+                  <!-- lien hypertexte à virer -->          
+                            <a href="admin/tableau.html">
+                            <button class="btn-lg btn-primary" type="submit">Envoyer</button>
+                            </a>
                             
-                            <div class="col-sm-5">Un lien trop long ?<br/>Vous voulez le réduire pour qu'il soit plus facile à diffuser ?
-                            </div>
-                            <div class="col-sm-2">
-                            </div>
-                            <div class="col-sm-5">Entrez votre url ici et laissez la magie opérer ! vous allez être surpris par le résultat
-                            </div>
-                           
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <form class="form-group">
-                                        <label for="url">URL à modifier :</label>
-                                        <input type="url" class="form-control" id="url">
-                                    <br/>
-                                    <a href="#cacher"><button href ="#cacher" class="btn btn-primary">Modifier</button></a>
-                                </form>
-                            </div>
-                        </div>
-                        
-                       <!-- gestion js pour faire apparaitre et disparaitre cette div au click de Modifier --> 
-                        <div class="row" id="resultat">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="url">Votre nouvel url tout beau et tout petit !</label>
-                                    <input type="url" class="form-control" id="url">
-                                </div>
-                                <button type="submit" class="btn btn-primary centered">Copier</button>
-                            </div>
-                        </div>
-                        
-                        
+                        </form>
                     </div>
                 </div>
             </div>
@@ -83,8 +60,8 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-sm-3"><p><b>Auteurs :</b></p>
-                    <br/>
+                <div class="col-sm-3"><b>Auteurs :</b>
+                    <br/><br/>
                     <p><span class="glyphicon glyphicon-user"></span> Charles de Franssu</p>
                     <p><span class="glyphicon glyphicon-user"></span> Thomas Roqueplot</p>
                 </div>
