@@ -20,7 +20,7 @@ form{
     padding-bottom: 2%;
 }
 
-#esultat{
+#resultat{
     height: 0;
     overflow: hidden;
     transition: height 1.5s;
