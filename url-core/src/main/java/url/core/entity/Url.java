@@ -2,13 +2,12 @@ package url.core.entity;
 
 import org.springframework.data.annotation.Id;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 /**
- * Created by N0stress on 20/02/2017.
+ * Created by Thomas on 20/02/2017.
  */
 public class Url {
 
