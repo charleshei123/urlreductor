@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/url-assets/url-assets.iml" filepath="$PROJECT_DIR$/url-assets/url-assets.iml" />
       <module fileurl="file://$PROJECT_DIR$/url-core/url-core.iml" filepath="$PROJECT_DIR$/url-core/url-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/url-web/url-web.iml" filepath="$PROJECT_DIR$/url-web/url-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/url_reductor.iml" filepath="$PROJECT_DIR$/url_reductor.iml" />
