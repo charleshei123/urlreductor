@@ -34,4 +34,12 @@ public class UrlServiceImpl implements UrlService{
     public void delete(long id) {
         urlDAO.delete(id);
     }
+
+    public Url findOneByUrlLong(String urlLong) {
+        return urlDAO.findOneByUrlLong(urlLong);
+    }
+
+    public String getLastGeneratedUrl() {
+        return urlDAO.getLastGeneratedUrl();
+    }
 }

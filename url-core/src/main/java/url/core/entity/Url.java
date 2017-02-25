@@ -34,6 +34,11 @@ public class Url {
         this.nomUrl = nomUrl;
     }
 
+    public Url(String urlLong, String nomUrl) {
+        this.urlLong = urlLong;
+        this.nomUrl = nomUrl;
+    }
+
     public long getId() {
         return id;
     }
@@ -74,5 +79,15 @@ public class Url {
                 ", urlLong='" + urlLong + '\'' +
                 ", nomUrl='" + nomUrl + '\'' +
                 '}';
+    }
+
+    public void createUrlCourt(String lastUrl) {
+        char derniereLettre = lastUrl.charAt(lastUrl.length() - 1);
+        int acsii = (int) derniereLettre;
+        if(acsii == 122) {
+            this.urlCourt = lastUrl + "a";
+        }else{
+            this.urlCourt = lastUrl.substring(0, lastUrl.lastIndexOf(derniereLettre)) + Character.toChars(acsii + 1);
+        }
     }
 }

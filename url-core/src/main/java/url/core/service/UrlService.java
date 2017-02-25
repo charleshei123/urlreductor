@@ -16,4 +16,8 @@ public interface UrlService {
     public void save(Url url);
 
     public void delete(long id);
+
+    public Url findOneByUrlLong(String urlLong);
+
+    public String getLastGeneratedUrl();
 }

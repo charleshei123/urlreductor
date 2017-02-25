@@ -3,7 +3,7 @@
   <head>
     <title>ITI - Reducteur URL</title>
     <link rel="icon" href="img/favicon.ico" />
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -40,34 +40,42 @@
                     <div class="panel-body">
                         <div class="row" id="textepanel">
                             
-                            <div class="col-sm-5">Un lien trop long ?<br/>Vous voulez le réduire pour qu'il soit plus facile à diffuser ?
+                            <div class="col-sm-5">Un lien trop long ?<br/>Vous voulez le r&eacute;duire pour qu'il soit plus facile &agrave; diffuser ?
                             </div>
                             <div class="col-sm-2">
                             </div>
-                            <div class="col-sm-5">Entrez votre url ici et laissez la magie opérer ! vous allez être surpris par le résultat
+                            <div class="col-sm-5">Entrez votre url ici et laissez la magie op&eacute;rer ! vous allez 	&ecirc;tre surpris par le r&eacute;sultat
                             </div>
                            
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
-                                        <label for="url">URL à modifier :</label>
-                                        <input type="url" class="form-control" id="url">
+                            <form action="raccourcir" method="POST">
+                                <div class="col-sm-12">
+                                    <label for="url">Nom associ&eacute; :</label>
+                                    #springFormInput("url.nomUrl" "class='form-control' id='urlNom' placeholder='Mais qu&rsquo;est ce qu&rsquo;une licorne?'")
                                     <br/>
-                                <button class="btn btn-primary" onclick="afficherCacher('resultat')">Modifier</button>
-                            </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label for="url">URL &agrave; modifier :</label>
+                                    #springFormInput("url.urlLong" "class='form-control' id='url' placeholder='ex : https://fr.wikipedia.org/wiki/Licorne'")
+                                    <br/>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Modifier</button>
+                            </form>
                         </div>
                         
                        <!-- gestion js pour faire apparaitre et disparaitre cette div au click de Modifier --> 
-                        <div class="row" id="resultat" style="display: none">
+                        #if($genere)
+                        <div class="row" id="resultat">
                             <br/><br/>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="url">Votre nouvel url tout beau et tout petit !</label>
-                                    <input type="url" class="form-control" id="url">
+                                    <input type="url" class="form-control" id="url" value="$urlApres.urlCourt">
                                 </div>
-                                <button class="btn btn-primary centered">Copier</button>
                             </div>
                         </div>
+                        #end
                     </div>
                 </div>
             </div>
@@ -83,7 +91,7 @@
                 </div>
                 <div class="col-sm-6 text-center">
                     <br/><br/>
-                  <p>mentions légales ! et blabla juridique</p>
+                  <p>mentions l&eacute;gales ! et blabla juridique</p>
                 </div>
                 <div class="col-sm-3">
                     <a href="https://github.com/charleshei123/urlreductor"><span class="glyphicon glyphicon-globe"></span><b> Github Repository</b></a>
