@@ -22,12 +22,16 @@ public class Url {
     @Column(name = "urlLong")
     private String urlLong;
 
+    @Column(name= "nomUrl")
+    private String nomUrl;
+
     public Url() {
     }
 
-    public Url(String urlCourt, String urlLong) {
+    public Url(String urlCourt, String urlLong, String nomUrl) {
         this.urlCourt = urlCourt;
         this.urlLong = urlLong;
+        this.nomUrl = nomUrl;
     }
 
     public long getId() {
@@ -54,12 +58,21 @@ public class Url {
         this.urlLong = urlLong;
     }
 
+    public String getNomUrl() {
+        return nomUrl;
+    }
+
+    public void setNomUrl(String nomUrl) {
+        this.nomUrl = nomUrl;
+    }
+
     @Override
     public String toString() {
         return "Url{" +
                 "id=" + id +
                 ", urlCourt='" + urlCourt + '\'' +
                 ", urlLong='" + urlLong + '\'' +
+                ", nomUrl='" + nomUrl + '\'' +
                 '}';
     }
 }

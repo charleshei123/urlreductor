@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import url.core.entity.Url;
@@ -41,11 +40,10 @@ public class WebController {
         return "tableau";
     }
 
-    @RequestMapping(value="/form", method=RequestMethod.POST)
-    public String submitForm(@ModelAttribute("url") Url url){
-        LOGGER.info("Ajout d'un URL");
-        urlService.save(url);
-        return "redirect:";
+    @RequestMapping(value="/contact",method = RequestMethod.GET)
+    public String getContact(ModelMap model){
+        LOGGER.info("Page Contact");
+        return "contact";
     }
 
     @RequestMapping("/*")
