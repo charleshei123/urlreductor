@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="text/javascript" src="js/fonctions.js">
-    <link rel="stylesheet" type="text/css" href="../../../../../bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../../../../css/main.css">
+    
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="META-INF.ressources/css/index.css">
 
   </head>
@@ -54,23 +54,22 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <form class="form-group">
                                         <label for="url">URL à modifier :</label>
                                         <input type="url" class="form-control" id="url">
                                     <br/>
-                                    <a href="#cacher"><button href ="#cacher" class="btn btn-primary">Modifier</button></a>
-                                </form>
+                                <button class="btn btn-primary" onclick="afficherCacher('resultat')">Modifier</button>
                             </div>
                         </div>
                         
                        <!-- gestion js pour faire apparaitre et disparaitre cette div au click de Modifier --> 
-                        <div class="row" id="resultat">
+                        <div class="row" id="resultat" style="display: none">
+                            <br/><br/>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="url">Votre nouvel url tout beau et tout petit !</label>
                                     <input type="url" class="form-control" id="url">
                                 </div>
-                                <button type="submit" class="btn btn-primary centered">Copier</button>
+                                <button class="btn btn-primary centered">Copier</button>
                             </div>
                         </div>
                         
@@ -104,4 +103,5 @@
         </div>
     </footer>
   </body>
+    <script type="text/javascript" src="js/fonctions.js"></script>
 </html>
