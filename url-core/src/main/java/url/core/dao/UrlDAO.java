@@ -12,7 +12,7 @@ public interface UrlDAO extends JpaRepository<Url, Long> {
 
     @Query
             (
-                    value="SELECT LAST(urlCourt) AS urlCourt FROM url",
+                    value="SELECT urlCourt FROM url ORDER BY id desc limit 1",
                     nativeQuery = true
             )
     public String getLastGeneratedUrl();

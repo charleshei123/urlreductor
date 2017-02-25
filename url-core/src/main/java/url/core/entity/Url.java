@@ -84,10 +84,11 @@ public class Url {
     public void createUrlCourt(String lastUrl) {
         char derniereLettre = lastUrl.charAt(lastUrl.length() - 1);
         int acsii = (int) derniereLettre;
-        if(acsii == 122) {
+        if(acsii >= 122) {
             this.urlCourt = lastUrl + "a";
         }else{
-            this.urlCourt = lastUrl.substring(0, lastUrl.lastIndexOf(derniereLettre)) + Character.toChars(acsii + 1);
+            char lettre = Character.toChars(acsii + 1)[0];
+            this.urlCourt = lastUrl.substring(0, lastUrl.lastIndexOf(derniereLettre)) + lettre;
         }
     }
 }

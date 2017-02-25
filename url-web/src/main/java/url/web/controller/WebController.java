@@ -33,11 +33,10 @@ public class WebController {
 
     @RequestMapping(value = "/raccourcir", method = RequestMethod.POST)
     public String submitForm(@ModelAttribute("url") Url url, ModelMap model){
-        LOGGER.info("Ajoute d'un URL");
-        Url urlExistant = new Url();
-        urlExistant = urlService.findOneByUrlLong(url.getUrlLong());
-        //String test = Assert.notNull(urlExistant, "vide");
-        if(urlExistant.getUrlCourt() != null) {
+        LOGGER.info("Ajout d'un URL");
+        if(urlService.findOneByUrlLong(url.getUrlLong()) != null) {
+            Url urlExistant = new Url();
+            urlExistant = urlService.findOneByUrlLong(url.getUrlLong());
             url.setUrlCourt(urlExistant.getUrlCourt());
             model.addAttribute("urlApres", url);
             model.addAttribute("genere", true);
@@ -47,7 +46,7 @@ public class WebController {
             model.addAttribute("genere", true);
             urlService.save(url);
         }
-        return "/";
+        return "redirect:/";
     }
 
     @RequestMapping(value="/all",method = RequestMethod.GET)
