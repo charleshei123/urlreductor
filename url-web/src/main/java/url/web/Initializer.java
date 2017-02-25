@@ -5,6 +5,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import url.core.config.AppConfig;
 import url.core.config.DBConfig;
 import url.web.config.WSConfig;
+import url.web.config.WebConfig;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -31,12 +32,12 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] {};
+        return new Class<?>[] { WebConfig.class };
     }
 
 
     @Override
     protected String[] getServletMappings() {
-        return new String[] { "/web/" };
+        return new String[] { "/" };
     }
 }

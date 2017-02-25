@@ -2,14 +2,14 @@
 <html lang="fr">
     <head>
         <title>ITI - Reducteur URL</title>
-        <link rel="icon" href="../img/favicon.ico" />
+        <link rel="icon" href="../../resources/img/favicon.ico" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script type="text/javascript" src="../js/fonctions.js"></script>
-        <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="../css/main.css"> 
-        <link rel="stylesheet" type="text/css" href="../css/tableau.css">
+        <script type="text/javascript" src="../../resources/js/fonctions.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../resources/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/main.css">
+        <link rel="stylesheet" type="text/css" href="../../../../../../url-web/src/main/webapp/resources/css/tableau.css">
     </head>
     <body>
         <!-- header à séparer ensuite avec java -->
@@ -17,12 +17,12 @@
       <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="../index.html">Reducteur URL</a>
+            <a class="navbar-brand" href="index.vm">Reducteur URL</a>
           </div>
           <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
-            <li class="active"><a href="tableau.html">All Urls</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.vm">Home</a></li>
+            <li class="active"><a href="tableau.vm">All Urls</a></li>
+            <li><a href="contact.vm">Contact</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <!--   <li><a href="#"><span class="glyphicon glyphicon-user"></span> Nom utilisateur</a></li> -->
@@ -118,7 +118,7 @@
                     <a href="https://github.com/charleshei123/urlreductor"><span class="glyphicon glyphicon-globe"></span><b> Github Repository</b></a>
                     <br/>
                     <br/>
-                    <a href="contact.html"><span class="glyphicon glyphicon-comment"></span><b> Contact</b></a>
+                    <a href="contact.vm"><span class="glyphicon glyphicon-comment"></span><b> Contact</b></a>
                     <span class="glyphicon glyphicon-group"></span>
                     <span class="glyphicon glyphicon-git"></span>
                 </div>

@@ -27,10 +27,6 @@ public class UrlServiceImpl implements UrlService{
         return urlDAO.findOne(id);
     }
 
-    public Url findByUrlLong(String urlLong) {
-        return null;
-    }
-
     public void save(Url url) {
         urlDAO.save(url);
     }

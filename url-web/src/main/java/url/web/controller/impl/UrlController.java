@@ -1,7 +1,8 @@
-package url.web.controller;
+package url.web.controller.impl;
 
 import url.core.entity.Url;
 import url.core.service.UrlService;
+import url.web.controller.RestController;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by Thomas on 25/02/2017.
  */
 @Named
-@Path("/url")
+@Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UrlController implements RestController {
@@ -22,7 +23,7 @@ public class UrlController implements RestController {
 
 
     @GET
-    @Path("/")
+    @Path("/list")
     public List<Url> getList() {
         return urlService.findAll();
     }

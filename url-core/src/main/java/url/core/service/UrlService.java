@@ -13,8 +13,6 @@ public interface UrlService {
 
     public Url findOne(long id);
 
-    public Url findByUrlLong(String urlLong);
-
     public void save(Url url);
 
     public void delete(long id);

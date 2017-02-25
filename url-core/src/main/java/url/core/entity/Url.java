@@ -1,11 +1,10 @@
 package url.core.entity;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Created by N0stress on 20/02/2017.
@@ -17,18 +16,18 @@ public class Url {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "urlLong")
-    private String urlLong;
-
     @Column(name = "urlCourt")
     private String urlCourt;
 
-    public Url(String urlLong, String urlCourt) {
-        this.urlLong = urlLong;
-        this.urlCourt = urlCourt;
-    }
+    @Column(name = "urlLong")
+    private String urlLong;
 
     public Url() {
+    }
+
+    public Url(String urlCourt, String urlLong) {
+        this.urlCourt = urlCourt;
+        this.urlLong = urlLong;
     }
 
     public long getId() {
@@ -39,14 +38,6 @@ public class Url {
         this.id = id;
     }
 
-    public String getUrlLong() {
-        return urlLong;
-    }
-
-    public void setUrlLong(String urlLong) {
-        this.urlLong = urlLong;
-    }
-
     public String getUrlCourt() {
         return urlCourt;
     }
@@ -55,12 +46,20 @@ public class Url {
         this.urlCourt = urlCourt;
     }
 
+    public String getUrlLong() {
+        return urlLong;
+    }
+
+    public void setUrlLong(String urlLong) {
+        this.urlLong = urlLong;
+    }
+
     @Override
     public String toString() {
         return "Url{" +
                 "id=" + id +
-                ", urlLong='" + urlLong + '\'' +
                 ", urlCourt='" + urlCourt + '\'' +
+                ", urlLong='" + urlLong + '\'' +
                 '}';
     }
 }
