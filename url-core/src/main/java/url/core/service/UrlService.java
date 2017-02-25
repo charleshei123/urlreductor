@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface UrlService {
 
-public List<Url> findAll();
+    public List<Url> findAll();
 
-public Url findById(long id);
+    public Url findOne(long id);
 
-public Url findByUrlLong(String urlLong);
+    public Url findByUrlLong(String urlLong);
 
-public void saveUrl(Url url);
+    public void save(Url url);
 
-public void deleteUrl(long id);
+    public void delete(long id);
 }

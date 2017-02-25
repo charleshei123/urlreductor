@@ -2,30 +2,20 @@ package url.core.entity;
 
 import org.springframework.data.annotation.Id;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 /**
  * Created by N0stress on 20/02/2017.
  */
+@Entity
 public class Url {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Column(name = "nom")
-    private String nom;
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
 
     @Column(name = "urlLong")
     private String urlLong;
@@ -33,8 +23,7 @@ public class Url {
     @Column(name = "urlCourt")
     private String urlCourt;
 
-    public Url(String nom, String urlLong, String urlCourt) {
-        this.nom = nom;
+    public Url(String urlLong, String urlCourt) {
         this.urlLong = urlLong;
         this.urlCourt = urlCourt;
     }
