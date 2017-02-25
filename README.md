@@ -1,5 +1,3 @@
-●	Le fichier README.md de votre repo Github fera office de documentation, il contiendra les instructions d’installation et d’utilisation de votre solution, mais aussi la justification des choix d’architecture. Une page github.io fera aussi l’affaire à condition que vous précisiez sont adresse dans le README. 
-
 /************ URL REDUCTOR ********/
 
 Projet réalisé par : Charles de Franssu et Thomas Roqueplot
