@@ -1,11 +1,13 @@
-function afficher_cacher(id)
+function afficherCacher(id)
 {
-    if(document.getElementById(id).style.visibility=="hidden")
+    
+    console.log(document.getElementById(id));
+    if(document.getElementById(id).style.display == "none")
     {
-        document.getElementById(id).style.visibility="visible";
+        document.getElementById(id).setAttribute("style", "display:true");
+    }
     else
     {
-        document.getElementById(id).style.visibility="hidden";
+        document.getElementById(id).setAttribute("style", "display:none");
     }
-    return true;
 }
