@@ -17,32 +17,39 @@ import java.util.List;
 public class UrlServiceImpl implements UrlService{
 
     @Inject
-    UrlDAO urlDAO;
+    private UrlDAO urlDAO;
 
+    @Override
     public List<Url> findAll() {
         return urlDAO.findAll();
     }
 
+    @Override
     public Url findOne(long id) {
         return urlDAO.findOne(id);
     }
 
+    @Override
     public void save(Url url) {
         urlDAO.save(url);
     }
 
+    @Override
     public void delete(long id) {
         urlDAO.delete(id);
     }
 
+    @Override
     public Url findOneByUrlLong(String urlLong) {
         return urlDAO.findOneByUrlLong(urlLong);
     }
 
+    @Override
     public Url findOneByUrlCourt(String urlCourt) {
         return urlDAO.findOneByUrlCourt(urlCourt);
     }
 
+    @Override
     public String getLastGeneratedUrl() {
         return urlDAO.getLastGeneratedUrl();
     }

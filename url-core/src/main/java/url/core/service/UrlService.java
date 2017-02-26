@@ -9,17 +9,17 @@ import java.util.List;
  */
 public interface UrlService {
 
-    public List<Url> findAll();
+    List<Url> findAll();
 
-    public Url findOne(long id);
+    Url findOne(long id);
 
-    public void save(Url url);
+    void save(Url url);
 
-    public void delete(long id);
+    void delete(long id);
 
-    public Url findOneByUrlLong(String urlLong);
+    Url findOneByUrlLong(String urlLong);
 
-    public Url findOneByUrlCourt(String urlCourt);
+    Url findOneByUrlCourt(String urlCourt);
 
-    public String getLastGeneratedUrl();
+    String getLastGeneratedUrl();
 }

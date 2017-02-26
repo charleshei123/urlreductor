@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import url.core.entity.Url;
+import url.core.service.BaseUrlService;
 import url.core.service.UrlService;
 
 import javax.inject.Inject;
@@ -25,22 +26,32 @@ public class WebController {
     @Inject
     private UrlService urlService;
 
-    @RequestMapping(value="/",method = RequestMethod.GET)
-    public String recupererFormulaire(ModelMap model){
-        LOGGER.info("Formulaire d'ajout d'URL");
-        model.addAttribute("url",new Url());
-        model.addAttribute("genere", false);
-        return "index";
-    }
+    @Inject
+    private BaseUrlService baseUrlService;
 
-    @RequestMapping(value = "/raccourcir", method = RequestMethod.POST)
-    public String ajouterUrl(@ModelAttribute("url") Url url, ModelMap model, HttpServletRequest req){
-        LOGGER.info("Ajout d'un URL");
+    @RequestMapping(value="/",method = RequestMethod.GET)
+    public String recupererFormulaire(ModelMap model, HttpServletRequest req){
+        LOGGER.info("Formulaire d'ajout d'URL");
 
         StringBuffer base = req.getRequestURL();
         String baseURI = req.getRequestURI();
         String baseContext = req.getContextPath();
         String urlBase = base.substring(0, base.length() - baseURI.length() + baseContext.length()) + "/";
+
+        LOGGER.info("Enregistrement de la nouvelle base pour les Urls courts");
+        baseUrlService.save(urlBase);
+
+        model.addAttribute("url",new Url());
+        model.addAttribute("genere", false);
+
+        return "index";
+    }
+
+    @RequestMapping(value = "/raccourcir", method = RequestMethod.POST)
+    public String ajouterUrl(@ModelAttribute("url") Url url, ModelMap model){
+        LOGGER.info("Ajout d'un URL");
+
+        String urlBase = baseUrlService.findOne(baseUrlService.getLastBaseUrlId()).getBaseUrl();
 
         if(urlService.findOneByUrlLong(url.getUrlLong()) != null) {
             Url urlExistant = new Url();
@@ -60,12 +71,11 @@ public class WebController {
     }
 
     @RequestMapping(value="/all",method = RequestMethod.GET)
-    public String getAllUrl(ModelMap model, HttpServletRequest req){
+    public String getAllUrl(ModelMap model){
         LOGGER.info("Liste des URLs");
-        StringBuffer base = req.getRequestURL();
-        String baseURI = req.getRequestURI();
-        String baseContext = req.getContextPath();
-        String urlBase = base.substring(0, base.length() - baseURI.length() + baseContext.length()) + "/";
+
+        String urlBase = baseUrlService.findOne(baseUrlService.getLastBaseUrlId()).getBaseUrl();
+
         List<Url> url = urlService.findAll();
         model.addAttribute("urls",url);
         model.addAttribute("urlBase", urlBase);
