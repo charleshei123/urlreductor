@@ -52,7 +52,7 @@
                                 <td>$url.id</td>
                                 <td>$url.nomUrl</td>
                                 <td><a href="$url.urlLong">$url.urlLong</a></td>
-                                <td><a href="$url.urlCourt">$url.urlCourt</a></td>
+                                <td><a href="$url.urlCourt">${urlBase}${url.urlCourt}</a></td>
                                 <td><span class="glyphicon glyphicon-remove"></span></td>
                             </tr>
                             #end

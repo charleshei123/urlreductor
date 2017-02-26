@@ -10,6 +10,8 @@ import url.core.entity.Url;
 public interface UrlDAO extends JpaRepository<Url, Long> {
     public Url findOneByUrlLong(String urlLong);
 
+    public Url findOneByUrlCourt(String urlCourt);
+
     @Query
             (
                     value="SELECT urlCourt FROM url ORDER BY id desc limit 1",

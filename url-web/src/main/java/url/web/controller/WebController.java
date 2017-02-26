@@ -11,6 +11,7 @@ import url.core.entity.Url;
 import url.core.service.UrlService;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class WebController {
     private UrlService urlService;
 
     @RequestMapping(value="/",method = RequestMethod.GET)
-    public String getFormAndList(ModelMap model){
+    public String recupererFormulaire(ModelMap model){
         LOGGER.info("Formulaire d'ajout d'URL");
         model.addAttribute("url",new Url());
         model.addAttribute("genere", false);
@@ -32,28 +33,41 @@ public class WebController {
     }
 
     @RequestMapping(value = "/raccourcir", method = RequestMethod.POST)
-    public String submitForm(@ModelAttribute("url") Url url, ModelMap model){
+    public String ajouterUrl(@ModelAttribute("url") Url url, ModelMap model, HttpServletRequest req){
         LOGGER.info("Ajout d'un URL");
+
+        StringBuffer base = req.getRequestURL();
+        String baseURI = req.getRequestURI();
+        String baseContext = req.getContextPath();
+        String urlBase = base.substring(0, base.length() - baseURI.length() + baseContext.length()) + "/";
+
         if(urlService.findOneByUrlLong(url.getUrlLong()) != null) {
             Url urlExistant = new Url();
             urlExistant = urlService.findOneByUrlLong(url.getUrlLong());
             url.setUrlCourt(urlExistant.getUrlCourt());
             model.addAttribute("urlApres", url);
+            model.addAttribute("urlBase", urlBase);
             model.addAttribute("genere", true);
         }else{
             url.createUrlCourt(urlService.getLastGeneratedUrl());
-            model.addAttribute("urlApres", url);
-            model.addAttribute("genere", true);
             urlService.save(url);
+            model.addAttribute("urlApres", url);
+            model.addAttribute("urlBase", urlBase);
+            model.addAttribute("genere", true);
         }
-        return "redirect:/";
+        return "index";
     }
 
     @RequestMapping(value="/all",method = RequestMethod.GET)
-    public String getAllUrl(ModelMap model){
+    public String getAllUrl(ModelMap model, HttpServletRequest req){
         LOGGER.info("Liste des URLs");
+        StringBuffer base = req.getRequestURL();
+        String baseURI = req.getRequestURI();
+        String baseContext = req.getContextPath();
+        String urlBase = base.substring(0, base.length() - baseURI.length() + baseContext.length()) + "/";
         List<Url> url = urlService.findAll();
         model.addAttribute("urls",url);
+        model.addAttribute("urlBase", urlBase);
         return "tableau";
     }
 
@@ -64,7 +78,19 @@ public class WebController {
     }
 
     @RequestMapping("/*")
-    public String error(){
-        return "error";
+    public String redirectionUrl(HttpServletRequest req){
+        LOGGER.info("Tentative d'ouverture d'une page non prédéfinie");
+
+        String uri = req.getRequestURI();
+        uri = uri.substring(1, uri.length());
+        Url urlRedirection = urlService.findOneByUrlCourt(uri);
+
+        if(urlRedirection != null){
+            LOGGER.info("Url de redirection trouvé");
+            return "redirect:" + urlRedirection.getUrlLong();
+        }else{
+            LOGGER.info("Lien invalide : 404");
+            return "error";
+        }
     }
 }

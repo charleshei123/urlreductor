@@ -39,6 +39,10 @@ public class UrlServiceImpl implements UrlService{
         return urlDAO.findOneByUrlLong(urlLong);
     }
 
+    public Url findOneByUrlCourt(String urlCourt) {
+        return urlDAO.findOneByUrlCourt(urlCourt);
+    }
+
     public String getLastGeneratedUrl() {
         return urlDAO.getLastGeneratedUrl();
     }

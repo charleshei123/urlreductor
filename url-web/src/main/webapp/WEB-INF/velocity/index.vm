@@ -71,7 +71,10 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="url">Votre nouvel url tout beau et tout petit !</label>
-                                    <input type="url" class="form-control" id="url" value="$urlApres.urlCourt">
+                                    <br>
+                                    <div style="text-align: center;">
+                                        <a href="/$urlApres.urlCourt">${urlBase}${url.urlCourt}</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

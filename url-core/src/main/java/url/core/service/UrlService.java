@@ -19,5 +19,7 @@ public interface UrlService {
 
     public Url findOneByUrlLong(String urlLong);
 
+    public Url findOneByUrlCourt(String urlCourt);
+
     public String getLastGeneratedUrl();
 }
