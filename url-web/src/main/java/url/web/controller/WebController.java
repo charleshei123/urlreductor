@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import url.core.entity.Url;
@@ -92,5 +93,12 @@ public class WebController {
             LOGGER.info("Lien invalide : 404");
             return "error";
         }
+    }
+
+    @RequestMapping(value="/supprimer/{id}", method = RequestMethod.GET)
+    public String suppressionUrl(@PathVariable("id") Long id){
+        LOGGER.info("Tentative de suppression d'un url");
+        urlService.delete(id);
+        return "redirect: /all";
     }
 }
