@@ -39,6 +39,10 @@ public class Url {
         this.nomUrl = nomUrl;
     }
 
+    public Url(String urlLong) {
+        this.urlLong = urlLong;
+    }
+
     public long getId() {
         return id;
     }

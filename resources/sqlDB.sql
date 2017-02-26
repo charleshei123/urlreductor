@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 25 Février 2017 à 18:45
+-- Généré le :  Dim 26 Février 2017 à 13:19
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -23,6 +23,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `baseurl`
+--
+
+CREATE TABLE `baseurl` (
+  `id` int(11) NOT NULL,
+  `baseUrl` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `baseurl`
+--
+
+INSERT INTO `baseurl` (`id`, `baseUrl`) VALUES
+(1, 'http://localhost:8082/');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `url`
 --
 
@@ -38,12 +56,18 @@ CREATE TABLE `url` (
 --
 
 INSERT INTO `url` (`id`, `urlCourt`, `urlLong`, `nomUrl`) VALUES
-(1, 'test', 'https://github.com/ThomasRoqueplo/jee-hei-2017-pw06', 'git'),
-(2, 'test2', 'https://www.google.fr/', 'google');
+(1, 'a', 'https://github.com/ThomasRoqueplo/jee-hei-2017-pw06', 'git'),
+(2, 'b', 'https://www.google.fr/', 'google');
 
 --
 -- Index pour les tables exportées
 --
+
+--
+-- Index pour la table `baseurl`
+--
+ALTER TABLE `baseurl`
+  ADD KEY `id` (`id`);
 
 --
 -- Index pour la table `url`
@@ -55,6 +79,11 @@ ALTER TABLE `url`
 -- AUTO_INCREMENT pour les tables exportées
 --
 
+--
+-- AUTO_INCREMENT pour la table `baseurl`
+--
+ALTER TABLE `baseurl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `url`
 --

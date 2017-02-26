@@ -39,6 +39,7 @@ public class WebController {
         String urlBase = base.substring(0, base.length() - baseURI.length() + baseContext.length()) + "/";
 
         LOGGER.info("Enregistrement de la nouvelle base pour les Urls courts");
+        baseUrlService.deleteById(baseUrlService.getLastBaseUrlId());
         baseUrlService.save(urlBase);
 
         model.addAttribute("url",new Url());

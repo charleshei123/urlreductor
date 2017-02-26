@@ -1,9 +1,12 @@
 package url.web.controller.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import url.core.entity.Url;
 import url.core.service.BaseUrlService;
 import url.core.service.UrlService;
 import url.web.controller.RestController;
+import url.web.controller.WebController;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,6 +22,8 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ApiController implements RestController {
+    private final static Logger LOGGER = LoggerFactory.getLogger(WebController.class);
+
     @Inject
     private UrlService urlService;
 
@@ -28,6 +33,7 @@ public class ApiController implements RestController {
     @GET
     @Path("/list")
     public List<Url> getList() {
+        LOGGER.info("API getList() : liste de tous les URLs");
 
         String baseUrl = baseUrlService.findOne(baseUrlService.getLastBaseUrlId()).getBaseUrl();
         List<Url> listUrl = urlService.findAll();
@@ -40,10 +46,22 @@ public class ApiController implements RestController {
     @GET
     @Path("/{id}")
     public Url getOne(@PathParam("id") long id) {
+        LOGGER.info("API getOne(" + id + ") : récupération d'un URL par son id");
 
         String baseUrl = baseUrlService.findOne(baseUrlService.getLastBaseUrlId()).getBaseUrl();
-        Url urlRetour = urlService.findOne(id);
-        urlRetour.setUrlCourt(baseUrl + urlRetour.getUrlCourt());
+        Url urlRetour = new Url();
+
+        if(urlService.findOne(id) != null) {
+            urlRetour = urlService.findOne(id);
+            urlRetour.setUrlCourt(baseUrl + urlRetour.getUrlCourt());
+            LOGGER.info("API getOne(" + id + ") : URL trouvé : " + urlRetour.getUrlCourt());
+        } else {
+            LOGGER.info("API getOne(" + id + ") : Aucun URL ne possède l'id : " + id);
+            urlRetour.setId(404);
+            urlRetour.setUrlCourt(baseUrl);
+            urlRetour.setUrlLong(baseUrl);
+            urlRetour.setNomUrl("Erreur 404 : aucun URL possédant l'id : " + id);
+        }
 
         return urlRetour;
     }
@@ -51,21 +69,24 @@ public class ApiController implements RestController {
 
     @POST
     @Path("/")
-    public Url saveEvenement(Url url) {
+    public Url saveUrl(String url) {
+        LOGGER.info("API saveURL(" + url + ") : Enregistrement de l'URL");
 
         String baseUrl = baseUrlService.findOne(baseUrlService.getLastBaseUrlId()).getBaseUrl();
-
-        if(urlService.findOneByUrlLong(url.getUrlLong()) != null) {
-            Url urlExistant = new Url();
-            urlExistant = urlService.findOneByUrlLong(url.getUrlLong());
-            url.setUrlCourt(urlExistant.getUrlCourt());
+        Url urlRetour = new Url();
+        if(urlService.findOneByUrlLong(url) != null) {
+            urlRetour = urlService.findOneByUrlLong(url);
+            urlRetour.setUrlCourt(baseUrl + urlRetour.getUrlCourt());
+            LOGGER.info("API saveURL(" + url + ") : l'URL long : " + urlRetour.getUrlLong() + "possède déjà un URL court associé : " + baseUrl + urlRetour.getUrlCourt());
         }else{
-            url.createUrlCourt(urlService.getLastGeneratedUrl());
-            urlService.save(url);
+            urlRetour.createUrlCourt(urlService.getLastGeneratedUrl());
+            urlRetour.setUrlLong(url);
+            urlService.save(urlRetour);
+            LOGGER.info("API saveURL(" + url + ") : URL court généré : " + baseUrl + urlRetour.getUrlCourt());
         }
 
-        url.setUrlCourt(baseUrl + url.getUrlCourt());
+        urlRetour.setUrlCourt(baseUrl + urlRetour.getUrlCourt());
 
-        return url;
+        return urlRetour;
     }
 }

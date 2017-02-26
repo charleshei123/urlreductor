@@ -16,4 +16,6 @@ public interface BaseUrlService {
     void save(String baseUrl);
 
     long getLastBaseUrlId();
+
+    void deleteById(long id);
 }

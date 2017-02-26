@@ -40,4 +40,9 @@ public class BaseUrlServiceImpl implements BaseUrlService {
     public long getLastBaseUrlId() {
         return baseUrlDAO.getLastBaseUrlId();
     }
+
+    @Override
+    public void deleteById(long id) {
+        baseUrlDAO.delete(id);
+    }
 }
