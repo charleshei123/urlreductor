@@ -22,6 +22,7 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ApiController implements RestController {
+
     private final static Logger LOGGER = LoggerFactory.getLogger(WebController.class);
 
     @Inject
@@ -33,7 +34,7 @@ public class ApiController implements RestController {
     @GET
     @Path("/list")
     public List<Url> getList() {
-        LOGGER.info("API getList() : liste de tous les URLs");
+        LOGGER.info("ApiController getList() : liste de tous les URLs");
 
         String baseUrl = baseUrlService.findOne(baseUrlService.getLastBaseUrlId()).getBaseUrl();
         List<Url> listUrl = urlService.findAll();
@@ -46,7 +47,7 @@ public class ApiController implements RestController {
     @GET
     @Path("/{id}")
     public Url getOne(@PathParam("id") long id) {
-        LOGGER.info("API getOne(" + id + ") : récupération d'un URL par son id");
+        LOGGER.info("ApiController getOne(" + id + ") : récupération d'un URL par son id");
 
         String baseUrl = baseUrlService.findOne(baseUrlService.getLastBaseUrlId()).getBaseUrl();
         Url urlRetour = new Url();
@@ -54,9 +55,9 @@ public class ApiController implements RestController {
         if(urlService.findOne(id) != null) {
             urlRetour = urlService.findOne(id);
             urlRetour.setUrlCourt(baseUrl + urlRetour.getUrlCourt());
-            LOGGER.info("API getOne(" + id + ") : URL trouvé : " + urlRetour.getUrlCourt());
+            LOGGER.info("ApiController getOne(" + id + ") : URL trouvé : " + urlRetour.getUrlCourt());
         } else {
-            LOGGER.info("API getOne(" + id + ") : Aucun URL ne possède l'id : " + id);
+            LOGGER.error("ApiController getOne(" + id + ") : Aucun URL ne possède l'id : " + id);
             urlRetour.setId(404);
             urlRetour.setUrlCourt(baseUrl);
             urlRetour.setUrlLong(baseUrl);
@@ -70,19 +71,19 @@ public class ApiController implements RestController {
     @POST
     @Path("/")
     public Url saveUrl(String url) {
-        LOGGER.info("API saveURL(" + url + ") : Enregistrement de l'URL");
+        LOGGER.info("ApiController saveURL(" + url + ") : Enregistrement de l'URL");
 
         String baseUrl = baseUrlService.findOne(baseUrlService.getLastBaseUrlId()).getBaseUrl();
         Url urlRetour = new Url();
         if(urlService.findOneByUrlLong(url) != null) {
             urlRetour = urlService.findOneByUrlLong(url);
             urlRetour.setUrlCourt(baseUrl + urlRetour.getUrlCourt());
-            LOGGER.info("API saveURL(" + url + ") : l'URL long : " + urlRetour.getUrlLong() + "possède déjà un URL court associé : " + baseUrl + urlRetour.getUrlCourt());
+            LOGGER.info("ApiController saveURL(" + url + ") : l'URL long : " + urlRetour.getUrlLong() + "possède déjà un URL court associé : " + baseUrl + urlRetour.getUrlCourt());
         }else{
             urlRetour.createUrlCourt(urlService.getLastGeneratedUrl());
             urlRetour.setUrlLong(url);
             urlService.save(urlRetour);
-            LOGGER.info("API saveURL(" + url + ") : URL court généré : " + baseUrl + urlRetour.getUrlCourt());
+            LOGGER.info("ApiController saveURL(" + url + ") : URL court généré : " + baseUrl + urlRetour.getUrlCourt());
         }
 
         urlRetour.setUrlCourt(baseUrl + urlRetour.getUrlCourt());

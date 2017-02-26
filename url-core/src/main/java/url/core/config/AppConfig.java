@@ -18,15 +18,17 @@ public class AppConfig {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
 
-
     @Bean
     public Properties dbProperties() {
+        LOGGER.info("AppConfig dbProperties() : Chargement des propriétés de la base de données");
+
         Properties props = new Properties();
         try {
             props.load(AppConfig.class.getClassLoader().getResourceAsStream("db.properties"));
         } catch (IOException e) {
-            LOGGER.error("Impossible de charger db.properties");
+            LOGGER.error("AppConfig dbProperties() : Impossible de charger db.properties");
         }
+
         return props;
     }
 }

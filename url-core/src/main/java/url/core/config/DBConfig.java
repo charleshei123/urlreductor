@@ -1,6 +1,8 @@
 package url.core.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -22,8 +24,12 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = "url.core.dao")
 public class DBConfig {
 
+    private final static Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
+
     @Bean(destroyMethod = "close")
     public DataSource dataSource(Properties dbProperties) {
+        LOGGER.info("DBConfig dataSource(dbProperties) : Bean");
+
         BoneCPDataSource dataSource = new BoneCPDataSource();
         dataSource.setDriverClass(dbProperties.getProperty("driverClass"));
         dataSource.setJdbcUrl(dbProperties.getProperty("jdbcUrl"));
@@ -36,27 +42,35 @@ public class DBConfig {
         dataSource.setPartitionCount(2);
         dataSource.setAcquireIncrement(5);
         dataSource.setStatementsCacheSize(500);
+
         return dataSource;
     }
 
 
     @Bean
     public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
+        LOGGER.info("DBConfig entityManager(entityManagerFactory) : Bean");
+
         return entityManagerFactory.createEntityManager();
     }
 
 
     @Bean
     public PlatformTransactionManager transactionManager(final EntityManagerFactory entityManagerFactory, DataSource dataSource) {
+        LOGGER.info("DBConfig transactionManager(entityManagerFactory, dataSource) : Bean");
+
         final JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         transactionManager.setDataSource(dataSource);
+
         return transactionManager;
     }
 
 
     @Bean
     public EntityManagerFactory entityManagerFactory(DataSource dataSource) throws SQLException {
+        LOGGER.info("DBConfig entityManagerFactory(dataSource) : Bean");
+
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setGenerateDdl(true);
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
@@ -65,6 +79,7 @@ public class DBConfig {
         factory.setPackagesToScan("url.core.entity");
         factory.setDataSource(dataSource);
         factory.afterPropertiesSet();
+
         return factory.getObject();
     }
 }

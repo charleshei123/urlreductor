@@ -21,6 +21,7 @@ import java.util.List;
  */
 @Controller
 public class WebController {
+
     private final static Logger LOGGER = LoggerFactory.getLogger(WebController.class);
 
     @Inject
@@ -31,14 +32,14 @@ public class WebController {
 
     @RequestMapping(value="/",method = RequestMethod.GET)
     public String recupererFormulaire(ModelMap model, HttpServletRequest req){
-        LOGGER.info("Formulaire d'ajout d'URL");
+        LOGGER.info("WebController recupererFormulaire(model, req) : Formulaire d'ajout d'URL");
 
         StringBuffer base = req.getRequestURL();
         String baseURI = req.getRequestURI();
         String baseContext = req.getContextPath();
         String urlBase = base.substring(0, base.length() - baseURI.length() + baseContext.length()) + "/";
 
-        LOGGER.info("Enregistrement de la nouvelle base pour les Urls courts");
+        LOGGER.info("WebController recupererFormulaire(model, req) : Enregistrement de la nouvelle base pour les Urls courts et suppression de l'ancienne");
         baseUrlService.deleteById(baseUrlService.getLastBaseUrlId());
         baseUrlService.save(urlBase);
 
@@ -50,7 +51,7 @@ public class WebController {
 
     @RequestMapping(value = "/raccourcir", method = RequestMethod.POST)
     public String ajouterUrl(@ModelAttribute("url") Url url, ModelMap model){
-        LOGGER.info("Ajout d'un URL");
+        LOGGER.info("WebController ajouterUrl(" + url.getUrlLong() + ", model) : Enregistrement de l'URL " + url.getUrlLong());
 
         String urlBase = baseUrlService.findOne(baseUrlService.getLastBaseUrlId()).getBaseUrl();
 
@@ -58,58 +59,71 @@ public class WebController {
             Url urlExistant = new Url();
             urlExistant = urlService.findOneByUrlLong(url.getUrlLong());
             url.setUrlCourt(urlExistant.getUrlCourt());
+
+            LOGGER.info("WebController ajouterUrl(" + url.getUrlLong() + ", model) : L'URL possède déjà un URL court associé : " + urlBase + url.getUrlCourt());
+
             model.addAttribute("urlApres", url);
             model.addAttribute("urlBase", urlBase);
             model.addAttribute("genere", true);
-        }else{
+        } else {
             url.createUrlCourt(urlService.getLastGeneratedUrl());
             urlService.save(url);
+
+            LOGGER.info("WebController ajouterUrl(" + url.getUrlLong() + ", model) : URL court généré associé généré et enregistré : " + urlBase + url.getUrlCourt());
+
             model.addAttribute("urlApres", url);
             model.addAttribute("urlBase", urlBase);
             model.addAttribute("genere", true);
         }
+
         return "index";
     }
 
     @RequestMapping(value="/all",method = RequestMethod.GET)
     public String getAllUrl(ModelMap model){
-        LOGGER.info("Liste des URLs");
+        LOGGER.info("WebController getAllUrl(model) : Récupératin de la liste des URLs enregistrés");
 
         String urlBase = baseUrlService.findOne(baseUrlService.getLastBaseUrlId()).getBaseUrl();
 
         List<Url> url = urlService.findAll();
         model.addAttribute("urls",url);
         model.addAttribute("urlBase", urlBase);
+
         return "tableau";
     }
 
     @RequestMapping(value="/contact",method = RequestMethod.GET)
     public String getContact(ModelMap model){
-        LOGGER.info("Page Contact");
+        LOGGER.info("WebController getContact(model) : Renvoie de la page COntact");
+
         return "contact";
     }
 
     @RequestMapping("/*")
     public String redirectionUrl(HttpServletRequest req){
-        LOGGER.info("Tentative d'ouverture d'une page non prédéfinie");
+        LOGGER.info("WebController redirectionUrl(req) : Ouverture d'une page associé à un URL court ou simplement erreur dans la saisie");
 
         String uri = req.getRequestURI();
         uri = uri.substring(1, uri.length());
         Url urlRedirection = urlService.findOneByUrlCourt(uri);
 
         if(urlRedirection != null){
-            LOGGER.info("Url de redirection trouvé");
+            LOGGER.info("WebController redirectionUrl(req) : Url de redirection trouvé");
+
             return "redirect:" + urlRedirection.getUrlLong();
         }else{
-            LOGGER.info("Lien invalide : 404");
+            LOGGER.info("WebController redirectionUrl(req) : Lien invalide : 404");
+
             return "error";
         }
     }
 
     @RequestMapping(value="/supprimer/{id}", method = RequestMethod.GET)
     public String suppressionUrl(@PathVariable("id") Long id){
-        LOGGER.info("Tentative de suppression d'un url");
+        LOGGER.info("WebController suppressionUrl(" + id + ") : suppression de l'URL ayant l'id : " + id);
+
         urlService.delete(id);
+
         return "redirect: /all";
     }
 }
