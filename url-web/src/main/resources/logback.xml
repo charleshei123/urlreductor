@@ -8,8 +8,6 @@
         </encoder>
     </appender>
 
-
-
     <logger name="url">
         <level value="debug" />
     </logger>

@@ -8,22 +8,24 @@ Il a pour but de reproduire le fonctionnement des réducteurs d'url connus sur l
 Ce projet a été réalisé en Java EE.
 C'est un maven project.
 
-l'interface graphique propose 4 pages :
+=>l'interface graphique propose 3 pages :
 
-- index.html => première page qui affiche deux formulaires permettant de réduire un url
-- contact.html => page de contact pas encore implémentée mais qui est censée envoyer un mail aux développeurs
-- tableau.html => affiche la liste des urls déjà raccoucis et aussi un bouton pour supprimer
-- log.html => permet de faire un connexion à des admin (à finir d'implémenter)
+- index.vm => première page qui affiche deux formulaires permettant de réduire un url
+- contact.vm => page de contact (pas encore implémentée mais qui est censée envoyer un mail aux développeurs)
+- tableau.vm => affiche la liste des urls déjà raccoucis et aussi un bouton pour supprimer
 
 
-Notre Bdd => appellée simplement hei_urlreductor contient deux tables :
+=>Notre Bdd => appellée simplement hei_urlreductor contient deux tables :
+(Dans ressources à la racine du projet, vous trouverez notre BDD au format Sql)
+il faut préalablement creer dans son projet une base de donnée vierge et specifier son nom et ses propriétés de connexion dans le "db.properties"
+(dans le module url-core)
 
-- users => liste des utilisateurs connus ayant le droit de se logger
+- baseUrl => stocke le nom de domaine du site
 - url => liste des urls (un id, un url long, un url court)
 
-Notre arborescence java suit ce qui a été ensseigné avec trois modules :
+=>Notre arborescence java suit ce qui a été ensseigné avec 2 modules :
 
-- url-assets => contient la partie interface graphique qui est dans les ressources, est appelé par le module url-web
-- url-core => contient le Rest machine qui defini les entités necessaires au bon fonctionnement de l'application 
-- url-web => rempli l'interface en collaboration avec le url-core
+- url-core => 
+	contient l'API de l'application permettant de réduire les liens urls, il établi aussi le lien avec la BDD
+- url-web => contient la version web de l'application au format vélocity, en collaboration avec le "url-core" il affiche à l'utilisateurs les pages souhaitées.S
 
